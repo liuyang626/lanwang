@@ -5,6 +5,8 @@ from langchain import OpenAI, VectorDBQA
 
 import os
 
+os.getenv('OPENAI_API_KEY')
+
 
 def embedding_persist(file):
     # 创建 TextFileLoader
