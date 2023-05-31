@@ -19,8 +19,8 @@ def upload():
         if file and allowed_file(file.filename):
             filename = file.filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print(app.config['UPLOAD_FOLDER'] + filename)
-            embedding_persist(app.config['UPLOAD_FOLDER'] + filename)
+            print(app.config['UPLOAD_FOLDER'] + '/' + filename)
+            embedding_persist(app.config['UPLOAD_FOLDER'] + '/' + filename)
             flash('上传成功！', 'success')
         else:
             flash('只能上传txt和pdf类型文件！', 'false')
