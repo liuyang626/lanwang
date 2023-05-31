@@ -3,7 +3,7 @@ from llm import embedding_persist
 import os
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'docs'
+app.config['UPLOAD_FOLDER'] = 'lanwang/docs'
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf'])
 app.secret_key = 'ei1se13d'
 
