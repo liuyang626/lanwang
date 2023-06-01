@@ -36,8 +36,8 @@ def search():
     print(question)
 
     # 返回结果
-    result = {'result': vector_search(question)}
-    return jsonify(result)
+    result = vector_search(question)
+    return jsonify(result.to_dict())
 
 
 if __name__ == '__main__':
