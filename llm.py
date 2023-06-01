@@ -29,7 +29,6 @@ def vector_search(query):
 
     # 加载数据
     docsearch = Chroma(persist_directory="vector_store", embedding_function=embeddings)
-    print(docsearch)
 
     # 创建问答对象
     qa = VectorDBQA.from_chain_type(llm=OpenAI(), chain_type="refine", vectorstore=docsearch,
