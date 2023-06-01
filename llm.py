@@ -22,7 +22,7 @@ def embedding_persist(file):
     docsearch.persist()
 
 
-def chat(query):
+def vector_search(query):
     # 初始化 openai 的 embeddings 对象
     embeddings = OpenAIEmbeddings()
 
@@ -30,7 +30,7 @@ def chat(query):
     docsearch = Chroma(persist_directory="vector_store", embedding_function=embeddings)
 
     # 创建问答对象
-    qa = VectorDBQA.from_chain_type(llm=OpenAI(), chain_type="map_reduce", vectorstore=docsearch,
+    qa = VectorDBQA.from_chain_type(llm=OpenAI(), chain_type="refine", vectorstore=docsearch,
                                     return_source_documents=True)
 
     # 进行问答
