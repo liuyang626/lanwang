@@ -20,6 +20,7 @@ def embedding_persist(file):
     # 持久化数据
     docsearch = Chroma.from_documents(document, embeddings, persist_directory="vector_store")
     docsearch.persist()
+    print(file + "索引建立完成");
 
 
 def vector_search(query):
@@ -28,10 +29,12 @@ def vector_search(query):
 
     # 加载数据
     docsearch = Chroma(persist_directory="vector_store", embedding_function=embeddings)
+    print(docsearch)
 
     # 创建问答对象
     qa = VectorDBQA.from_chain_type(llm=OpenAI(), chain_type="refine", vectorstore=docsearch,
                                     return_source_documents=True)
+    print(qa)
 
     # 进行问答
     return qa({"query": query})
