@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, flash, jsonify
 from llm import embedding_persist, vector_search
+from fastapi.encoders import jsonable_encoder
 import os
+import json
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'lanwang/docs'
@@ -37,7 +39,8 @@ def search():
 
     # 返回结果
     result = vector_search(question)
-    return jsonify(result)
+    
+    return jsonify(json.dumps(jsonable_encoder(result), ensure_ascii=False))
 
 
 if __name__ == '__main__':
