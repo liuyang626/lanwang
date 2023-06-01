@@ -37,6 +37,10 @@ def search():
 
     # 返回结果
     result = vector_search(question)
+    print('11111')
+    print(result)
+    print('22222')
+    print(jsonify(result.to_dict()))
     return jsonify(result.to_dict())
 
 
