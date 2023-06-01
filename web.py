@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, flash
-from llm import embedding_persist
+from flask import Flask, render_template, request, flash, jsonify
+from llm import embedding_persist, vector_search
 import os
 
 app = Flask(__name__)
@@ -26,6 +26,18 @@ def upload():
             flash('只能上传txt和pdf类型文件！', 'false')
     file_list = os.listdir(app.config['UPLOAD_FOLDER'])
     return render_template('upload.html', files=file_list)
+
+
+@app.route('/search', methods=['POST'])
+def search():
+    # 获取传递的数据
+    data = request.get_json()
+    question = data['question']
+    print(question)
+
+    # 返回结果
+    result = {'result': vector_search(question)}
+    return jsonify(result)
 
 
 if __name__ == '__main__':
