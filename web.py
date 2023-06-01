@@ -40,7 +40,7 @@ def search():
     # 返回结果
     result = vector_search(question)
     
-    return jsonify(json.dumps(jsonable_encoder(result), ensure_ascii=False))
+    return jsonify(jsonable_encoder(result))
 
 
 if __name__ == '__main__':
